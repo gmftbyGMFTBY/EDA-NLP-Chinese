@@ -13,7 +13,8 @@ Easy Data Augmentation for NLP on Chinese, based on [EDA_NLP](https://github.com
 ## 3. How to use:
 1. create the data folder to hold the input sentences and augmentation sentences
 ```bash
-mkdir data```
+mkdir data
+```
 
 2. Put your data into `data` folder, chinese sentence need to be segmented and split with space. 
 
