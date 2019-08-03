@@ -18,13 +18,12 @@ mkdir data
 
 2. Put your data into `data` folder, chinese sentence need to be segmented and split with space. 
 
-3. Data Augmentation
+3. Data Augmentation  
+`num_aug`: number of augmented sentences per original sentence  
+`alpha`: percent of words in each sentence to be changed, details can be found [here](https://arxiv.org/abs/1901.11196)
 ```bash
 python augmentation.py --input ./data/<input_file> --output ./data/<output_file> --num_aug 5 --alpha 0.1
 ```
-
-    * `num_aug`: number of augmented sentences per original sentence
-    * `alpha`: percent of words in each sentence to be changed, details can be found [here](https://arxiv.org/abs/1901.11196)
     
 ## 4. Refer:
 1. [Synonyms](https://github.com/huyingxi/Synonyms)
