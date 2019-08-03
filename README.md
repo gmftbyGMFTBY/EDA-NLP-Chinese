@@ -1,2 +1,2 @@
 # EDA-Chinese
-Easy Data Augmentation for NLP in Chinese
+Easy Data Augmentation for NLP on Chinese
