@@ -57,7 +57,7 @@ def synonym_replacement(words, n, stop_words):
 
 def random_deletion(words, p):
     # obviously, if there's only one word, don't delete it
-    if len(words) == 1:
+    if len(words) <= 1:
         return words
     
     # randomly delete words with probability p
@@ -86,6 +86,11 @@ def random_swap(words, n):
     return new_words
 
 def swap_word(new_words):
+    if len(new_words) == 0:
+        new_words.append('.')
+        new_words.append('.')
+    elif len(new_words) == 1:
+        new_words.append('.')
     random_idx_1 = random.randint(0, len(new_words)-1)
     random_idx_2 = random_idx_1
     counter = 0
@@ -111,8 +116,13 @@ def random_insertion(words, n):
 def add_word(new_words):
     synon = []
     counter = 0
+    if len(new_words) == 0:
+        new_words.append('.')
+        new_words.append('.')
+    elif len(new_words) == 1:
+        new_words.append('.')
     while len(synon) < 1:
-        random_word = new_words[random.randint(0, len(new_words)-1)]
+        random_word = random.choice(new_words)
         synonym = synonyms.nearby(random_word)[0]
         counter += 1
         if counter >= 10:

@@ -3,19 +3,21 @@
 # Fixed by GMFTBY, 2019.8.3
 
 from eda import *
-
-# arguments to be parsed from command line
 import argparse
+from tqdm import tqdm
 
 # generate more data with standard augmentation
 def gen_eda(input_file, output_file, alpha, num_aug=9):
+    print('[!] Begin to generate the augmentation data')
     writer = open(output_file, 'w')
     
     with open(input_file, 'r') as f:
         lines = f.readlines()
 
     with open(output_file, 'w') as f:
-        for i, line in enumerate(lines):
+        print(f'[!] Total lines: {len(lines)}')
+        pbar = tqdm(enumerate(lines))
+        for i, line in pbar:
             sentence = line.strip()
             aug_sentences = eda(sentence, 
                                 alpha_sr=alpha, 
@@ -25,8 +27,10 @@ def gen_eda(input_file, output_file, alpha, num_aug=9):
                                 num_aug=num_aug)
             for aug_sentence in aug_sentences:
                 f.write(aug_sentence + '\n')
-
-    print(f"EDA-Chinese for {input_file} to {output_file} with num_aug={str(num_aug)}")
+            pbar.set_description(f'Progress: {i} / {len(lines)}, {100 * round(i / len(lines), 4)}%')
+            
+        pbar.close()
+    print(f"[!] Over. EDA-Chinese for {input_file} to {output_file} with num_aug={str(num_aug)}")
 
 
 if __name__ == "__main__":
